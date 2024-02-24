@@ -1,0 +1,37 @@
+.form {
+  display: block;
+  width: 250px;
+}
+
+.label {
+  display: block;
+  margin: 8px;
+}
+
+.input {
+  font-size: 28px;
+  padding: 8px 16px;
+  background: none;
+  width: 331px;
+}
+
+::placeholder {
+  color: #2b2b2b;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.btn {
+  margin-top: 5px;
+  color: rgb(8, 21, 43);
+  background-color: rgb(137, 180, 219);
+  border: 1px solid #253094;
+  font-size: 26px;
+  padding: 8px 20px;
+  width: 367px;
+}
+
+.btn:hover {
+  color: aliceblue;
+  background-color: #395ee5;
+}

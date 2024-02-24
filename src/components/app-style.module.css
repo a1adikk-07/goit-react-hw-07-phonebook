@@ -1,0 +1,10 @@
+.appdiv {
+  display: flex;
+  /* align-items: start; */
+  justify-content: center;
+  gap: 300px;
+}
+
+.appTitle {
+  font-size: 40px;
+}
