@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import useForm from 'components/hooks/useForm';
-import { addContact } from '../../redux/contacts/contacts-slice';
+import { postContacts } from 'api/contact-api';
 // import { setFilter } from '../../redux/filter/filter-slice';
 import { getFilteredContactsSelector } from '../../redux/contacts/contacts-selector';
 import styles from '../ContactForm/contact-form.module.css';
@@ -34,7 +34,7 @@ const ContactForm = () => {
       );
     }
 
-    const action = addContact(state);
+    const action = postContacts(state);
     dispatch(action);
     reset();
   };
@@ -45,19 +45,13 @@ const ContactForm = () => {
     <form onSubmit={onAddContact} className={styles.form}>
       <div className={styles.phoneWrap}>
         <div>
-          <label
-            // htmlFor={contactId}
-            className={styles.label}
-          >
-            Name
-          </label>
+          <label className={styles.label}>Name</label>
           <input
             className={styles.input}
             value={name}
             required
             name="name"
             onChange={handleChange}
-            // id={contactId}
             type="text"
             placeholder="Enter a name"
           />
@@ -65,19 +59,13 @@ const ContactForm = () => {
       </div>
       <div className={styles.contactsWrap}>
         <div>
-          <label
-            // htmlFor={numberId}
-            className={styles.label}
-          >
-            Number
-          </label>
+          <label className={styles.label}>Number</label>
           <input
             className={styles.input}
             value={number}
             required
             name="number"
             onChange={handleChange}
-            // id={numberId}
             type="tel"
             placeholder="Enter a number"
             min="8"
