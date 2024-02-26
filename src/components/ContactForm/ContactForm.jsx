@@ -1,10 +1,7 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import useForm from 'components/hooks/useForm';
-import { postContacts } from 'api/contact-api';
-// import { setFilter } from '../../redux/filter/filter-slice';
-import { getFilteredContactsSelector } from '../../redux/contacts/contacts-selector';
+import { postContact } from '../../redux/contacts/contacts-operations';
 import styles from '../ContactForm/contact-form.module.css';
-// import { deleteContact } from '../../redux/contacts/contacts-slice';
 
 const INITIAL_STATE = {
   name: '',
@@ -12,31 +9,28 @@ const INITIAL_STATE = {
 };
 
 const ContactForm = () => {
-  const contacts = useSelector(getFilteredContactsSelector);
+  // const contacts = useSelector(getFilteredContactsSelector);
   const dispatch = useDispatch();
 
   const { state, handleChange, reset } = useForm(INITIAL_STATE);
 
-  const isDublicate = ({ name }) => {
-    const normolizedName = name.toLowerCase();
-    const dublicate = contacts.find(item => {
-      const normalizedCurrentName = item.name.toLowerCase();
-      return normalizedCurrentName === normolizedName;
-    });
-    return Boolean(dublicate);
-  };
+  // const isDublicate = ({ name }) => {
+  //   const normolizedName = name.toLowerCase();
+  //   const dublicate = contacts.find(item => {
+  //     const normalizedCurrentName = item.name.toLowerCase();
+  //     return normalizedCurrentName === normolizedName;
+  //   });
+  //   return Boolean(dublicate);
+  // };
 
   const onAddContact = e => {
     e.preventDefault();
-    if (isDublicate(state)) {
-      return alert(
-        `You've already added ${state.name} or a number ${state.number} to your phonebook.`
-      );
-    }
-
-    const action = postContacts(state);
-    dispatch(action);
+    dispatch(postContact(state));
     reset();
+
+    //   const action = postContacts(state);
+    //   dispatch(action);
+    //   reset();
   };
 
   const { name, number } = state;

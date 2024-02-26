@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as contactApi from '../../api/contact-api.js';
 
 export const fetchContacts = createAsyncThunk(
-  'contacts/fetchAll',
+  'contact/fetchAll',
   async (_, thunkAPI) => {
     try {
       const data = await contactApi.getContacts();
@@ -14,8 +14,8 @@ export const fetchContacts = createAsyncThunk(
   }
 );
 
-export const postContacts = createAsyncThunk(
-  'contacts/addContact',
+export const postContact = createAsyncThunk(
+  'contact/addContacts',
   async (body, { rejectWithValue }) => {
     try {
       const data = await contactApi.postContacts(body);
@@ -26,11 +26,11 @@ export const postContacts = createAsyncThunk(
   },
   {
     condition: ({ name, number }, { getState }) => {
-      const { contact } = getState;
+      const { contact } = getState();
       const normalizedName = name.toLowerCase();
       const normalizedNumber = number.toLowerCase();
 
-      const dublicate = contact.items.find(item => {
+      const duplicate = contact.items.find(item => {
         const normalizedCurrentName = item.name.toLowerCase();
         const normalizedCurrentNumber = item.number.toLowerCase();
         return (
@@ -38,18 +38,21 @@ export const postContacts = createAsyncThunk(
           normalizedCurrentNumber === normalizedNumber
         );
       });
-      if (dublicate) {
+
+      if (duplicate) {
         alert(
           `❕ You've already added ${name} or a number ${number} to your phonebook ❕`
         );
         return false;
       }
+
+      return true;
     },
   }
 );
 
 export const removeContacts = createAsyncThunk(
-  'contacts/removeContacts',
+  'contact/removeContacts',
   async (id, { rejectWithValue }) => {
     try {
       await contactApi.removeContacts(id);
