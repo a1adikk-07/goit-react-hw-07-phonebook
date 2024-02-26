@@ -9,7 +9,9 @@ import {
 import { getFilteredContactsSelector } from '../../redux/contacts/contacts-selector';
 
 export const ContactList = () => {
-  const { items, isLoading, error } = useSelector(getFilteredContactsSelector);
+  const { items, isLoading, isError } = useSelector(
+    getFilteredContactsSelector
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,7 +38,7 @@ export const ContactList = () => {
   return (
     <div>
       {isLoading && <p>loading...</p>}
-      {error && <p>{error}</p>}
+      {isError && <p>{isError}</p>}
       {Boolean(items.length) && <ul className={styles.list}>{elements}</ul>}
     </div>
   );
