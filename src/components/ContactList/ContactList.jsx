@@ -4,7 +4,7 @@ import styles from '../ContactList/contact-list.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   fetchContacts,
-  removeContacts,
+  removeContact,
 } from '../../redux/contacts/contacts-operations';
 import { getFilteredContactsSelector } from '../../redux/contacts/contacts-selector';
 
@@ -17,23 +17,27 @@ export const ContactList = () => {
   }, [dispatch]);
 
   const onRemoveContact = id => {
-    dispatch(removeContacts(id));
+    dispatch(removeContact(id));
   };
 
   const elements = items.map(({ id, name, number }) => (
-    <li key={id}>
+    <li key={id} className={styles.contact}>
       {name} {number}{' '}
-      <button onClick={() => onRemoveContact(id)} type="button">
-        Remove contact
+      <button
+        onClick={() => onRemoveContact(id)}
+        type="button"
+        className={styles.delete}
+      >
+        x
       </button>
     </li>
   ));
 
   return (
     <div className={styles.wrapper}>
-      {isLoading && <p>Now Loading...</p>}
+      {isLoading && <p>Loading...</p>}
       {error && <p>{error}</p>}
-      {Boolean(items.length) && <ol className={styles.list}>{elements}</ol>}
+      {Boolean(items.length) && <ul className={styles.list}>{elements}</ul>}
     </div>
   );
 };

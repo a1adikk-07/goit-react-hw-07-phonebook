@@ -1,6 +1,6 @@
 body {
   display: block;
-  background: #b4bbd8;
+  background: #c6d2ff;
   padding: 10px 40px;
 }
 
@@ -14,7 +14,7 @@ body {
   padding: 4px;
   align-items: center;
   border: 2px solid #2c55a5;
-  font-size: 30px;
+  font-size: 22px;
   margin-bottom: 12px;
 }
 
@@ -31,4 +31,5 @@ body {
   padding: 3px 8px;
   position: absolute;
   right: 5px;
+  bottom: 0.1px;
 }

@@ -14,23 +14,10 @@ const ContactForm = () => {
 
   const { state, handleChange, reset } = useForm(INITIAL_STATE);
 
-  // const isDublicate = ({ name }) => {
-  //   const normolizedName = name.toLowerCase();
-  //   const dublicate = contacts.find(item => {
-  //     const normalizedCurrentName = item.name.toLowerCase();
-  //     return normalizedCurrentName === normolizedName;
-  //   });
-  //   return Boolean(dublicate);
-  // };
-
   const onAddContact = e => {
     e.preventDefault();
     dispatch(postContact(state));
     reset();
-
-    //   const action = postContacts(state);
-    //   dispatch(action);
-    //   reset();
   };
 
   const { name, number } = state;
