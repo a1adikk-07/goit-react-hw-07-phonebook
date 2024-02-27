@@ -37,13 +37,13 @@ export const postContact = createAsyncThunk(
     //       normalizedCurrentNumber === normalizedNumber
     //     );
     //   });
-    //     if(duplicate) {
-    //       alert(
-    //         `❕ You've already added ${name} or a number ${number} to your phonebook ❕`
-    //       );
-    //       return false;
-    //     },
+    //   if (duplicate) {
+    //     alert(
+    //       `❕ You've already added ${name} or a number ${number} to your phonebook ❕`
+    //     );
+    //     return false;
     //   }
+    // },
   }
 );
 
