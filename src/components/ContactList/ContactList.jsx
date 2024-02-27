@@ -9,9 +9,7 @@ import {
 import { getFilteredContactsSelector } from '../../redux/contacts/contacts-selector';
 
 export const ContactList = () => {
-  const { items, isLoading, isError } = useSelector(
-    getFilteredContactsSelector
-  );
+  const { items, isLoading, error } = useSelector(getFilteredContactsSelector);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,23 +21,19 @@ export const ContactList = () => {
   };
 
   const elements = items.map(({ id, name, number }) => (
-    <li key={id} className={styles.contact}>
+    <li key={id}>
       {name} {number}{' '}
-      <button
-        onClick={() => onRemoveContact(id)}
-        type="button"
-        className={styles.delete}
-      >
-        x
+      <button onClick={() => onRemoveContact(id)} type="button">
+        Remove contact
       </button>
     </li>
   ));
 
   return (
-    <div>
-      {isLoading && <p>loading...</p>}
-      {isError && <p>{isError}</p>}
-      {Boolean(items.length) && <ul className={styles.list}>{elements}</ul>}
+    <div className={styles.wrapper}>
+      {isLoading && <p>Now Loading...</p>}
+      {error && <p>{error}</p>}
+      {Boolean(items.length) && <ol className={styles.list}>{elements}</ol>}
     </div>
   );
 };
