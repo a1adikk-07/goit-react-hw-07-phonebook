@@ -16,6 +16,15 @@ const ContactForm = () => {
 
   const onAddContact = e => {
     e.preventDefault();
+    // if (number.state === number.value) {
+    //   alert(
+    //     `You've already added ${name} or a number ${number} to your phonebook`
+    //   );
+    //   return false;
+    // } else if (number.state !== number.value) {
+    //   return true;
+    // }
+
     dispatch(postContact(state));
     reset();
   };

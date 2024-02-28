@@ -23,27 +23,6 @@ export const postContact = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error.message);
     }
-  },
-  {
-    // condition: ({ name, number }, { getState }) => {
-    //   const { contact } = getState();
-    //   const normalizedName = name.toLowerCase();
-    //   const normalizedNumber = number.toLowerCase();
-    //   const duplicate = contact.items.find(item => {
-    //     const normalizedCurrentName = item.name.toLowerCase();
-    //     const normalizedCurrentNumber = item.number.toLowerCase();
-    //     return (
-    //       normalizedCurrentName === normalizedName ||
-    //       normalizedCurrentNumber === normalizedNumber
-    //     );
-    //   });
-    //   if (duplicate) {
-    //     alert(
-    //       `❕ You've already added ${name} or a number ${number} to your phonebook ❕`
-    //     );
-    //     return false;
-    //   }
-    // },
   }
 );
 
