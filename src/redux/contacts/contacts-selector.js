@@ -1,11 +1,13 @@
 import { createSelector } from 'reselect';
 
+import { selectFilter } from '../../redux/filter/filter-selector';
+
 export const getAllContactsSelector = store => store.contacts;
 
-export const getFilterSelector = store => store.filter;
+// export const getFilterSelector = store => store.filter;
 
 export const getFilteredContactsSelector = createSelector(
-  [getAllContactsSelector, getFilterSelector],
+  [getAllContactsSelector, selectFilter],
   (contacts, filter) => {
     if (!filter) {
       return contacts.items;
