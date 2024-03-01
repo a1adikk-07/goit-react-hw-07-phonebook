@@ -1,70 +1,68 @@
-import { useDispatch } from 'react-redux';
-import useForm from 'components/hooks/useForm';
-import { postContact } from '../../redux/contacts/contacts-operations';
-import styles from '../ContactForm/contact-form.module.css';
-
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
+import { postContact } from '../../redux/operations';
+import { selectContacts } from '../../redux/selectors';
+import styles from './contact-form.module.css';
 const INITIAL_STATE = {
   name: '',
-  number: '',
+  phone: '',
 };
 
 const ContactForm = () => {
-  // const contacts = useSelector(getFilteredContactsSelector);
+  const [state, setState] = useState(INITIAL_STATE);
+  const contacts = useSelector(selectContacts);
+
   const dispatch = useDispatch();
 
-  const { state, handleChange, reset } = useForm(INITIAL_STATE);
+  const handelChange = evt => {
+    const { name, value } = evt.target;
+    setState(prevState => ({ ...prevState, [name]: value }));
+  };
 
-  const onAddContact = e => {
-    e.preventDefault();
-    // if (number.state === number.value) {
-    //   alert(
-    //     `You've already added ${name} or a number ${number} to your phonebook`
-    //   );
-    //   return false;
-    // } else if (number.state !== number.value) {
-    //   return true;
-    // }
-
-    dispatch(postContact(state));
+  const handelFormSubmit = evt => {
+    evt.preventDefault();
+    const { name, phone } = state;
+    const isDublicated = contacts.find(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
+    if (isDublicated) {
+      toast.error(`${name} is already in contacts.`);
+      return;
+    }
+    dispatch(postContact({ name, phone }));
     reset();
   };
 
-  const { name, number } = state;
+  const reset = () => {
+    setState(INITIAL_STATE);
+  };
 
   return (
-    <form onSubmit={onAddContact} className={styles.form}>
-      <div className={styles.phoneWrap}>
-        <div>
-          <label className={styles.label}>Name</label>
-          <input
-            className={styles.input}
-            value={name}
-            required
-            name="name"
-            onChange={handleChange}
-            type="text"
-            placeholder="Enter a name"
-          />
-        </div>
-      </div>
-      <div className={styles.contactsWrap}>
-        <div>
-          <label className={styles.label}>Number</label>
-          <input
-            className={styles.input}
-            value={number}
-            required
-            name="number"
-            onChange={handleChange}
-            type="tel"
-            placeholder="Enter a number"
-            min="8"
-            max="8"
-            step="1"
-          />
-        </div>
-      </div>
-      <button type="submit" className={styles.btn}>
+    <form onSubmit={handelFormSubmit} className={styles.form}>
+      <label className={styles.label}>
+        Name
+        <input
+          className={styles.input}
+          type="text"
+          name="name"
+          value={state.name}
+          required
+          onChange={handelChange}
+        />
+      </label>
+      <label className={styles.label}>
+        Phone
+        <input
+          className={styles.input}
+          type="tel"
+          name="phone"
+          value={state.phone}
+          required
+          onChange={handelChange}
+        />
+      </label>
+      <button className={styles.btn} type="submit">
         Add contact
       </button>
     </form>

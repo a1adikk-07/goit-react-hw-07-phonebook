@@ -1,43 +1,35 @@
-// import React from 'react';
 import { useEffect } from 'react';
-import styles from '../ContactList/contact-list.module.css';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { ContactItem } from './contactItem/contactItem';
+import { fetchContacts } from '../../redux/operations';
 import {
-  fetchContacts,
-  removeContact,
-} from '../../redux/contacts/contacts-operations';
-import { getFilteredContactsSelector } from '../../redux/contacts/contacts-selector';
+  selectError,
+  selectIsLoading,
+  selectVisibleContacts,
+} from '../../redux/selectors';
+import styles from './contact-list.module.css';
 
-export const ContactList = () => {
-  const { items, isLoading, error } = useSelector(getFilteredContactsSelector);
+const ContactList = () => {
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  const onRemoveContact = id => {
-    dispatch(removeContact(id));
-  };
-
-  const elements = items.map(({ id, name, number }) => (
-    <li key={id} className={styles.contact}>
-      {name} {number}{' '}
-      <button
-        onClick={() => onRemoveContact(id)}
-        type="button"
-        className={styles.delete}
-      >
-        x
-      </button>
-    </li>
-  ));
+  const visibleContacts = useSelector(selectVisibleContacts);
 
   return (
-    <div className={styles.wrapper}>
-      {isLoading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-      {Boolean(items.length) && <ul className={styles.list}>{elements}</ul>}
-    </div>
+    <ul className={styles.list}>
+      {isLoading && !error && <b>loading...</b>}
+      <ul>
+        {visibleContacts.map(contact => (
+          <ContactItem key={contact.id} contact={contact} />
+        ))}
+      </ul>
+    </ul>
   );
 };
+export default ContactList;
