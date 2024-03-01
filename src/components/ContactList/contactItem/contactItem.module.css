@@ -1,10 +1,11 @@
 .contact {
   position: relative;
-  padding: 4px;
+  padding: 4px 8px;
   align-items: center;
   border: 2px solid #2c55a5;
   font-size: 22px;
   margin-bottom: 12px;
+  z-index: 1;
 }
 
 /* .contacts {
@@ -20,5 +21,6 @@
   padding: 3px 8px;
   position: absolute;
   right: 5px;
-  bottom: 0.1px;
+  bottom: 25%;
+  /* align-items: center; */
 }

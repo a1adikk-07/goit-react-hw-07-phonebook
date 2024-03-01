@@ -5,7 +5,7 @@ import styles from './contactItem.module.css';
 export const ContactItem = ({ contact: { id, name, phone } }) => {
   const dispatch = useDispatch();
   return (
-    <li>
+    <li className={styles.contact}>
       <p>
         {name}: <span>{phone}</span>
       </p>

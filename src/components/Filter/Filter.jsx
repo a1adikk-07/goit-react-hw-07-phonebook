@@ -9,8 +9,8 @@ const ContactsFilter = () => {
 
   return (
     <div className={styles.filter}>
-      Find contact by name:
       <input
+        placeholder="Find contact by name..."
         className={styles.input}
         type="text"
         value={name}

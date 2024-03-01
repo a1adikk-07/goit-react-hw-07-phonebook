@@ -10,12 +10,17 @@ body {
 }
 
 .contact {
+  display: flex;
   position: relative;
   padding: 4px;
   align-items: center;
   border: 2px solid #2c55a5;
   font-size: 22px;
   margin-bottom: 12px;
+}
+
+.loading {
+  margin-top: 16px;
 }
 
 /* .contacts {

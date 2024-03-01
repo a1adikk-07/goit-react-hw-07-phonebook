@@ -23,7 +23,7 @@ const ContactList = () => {
 
   return (
     <>
-      {isLoading && !error && <b>loading...</b>}
+      {isLoading && !error && <b className={styles.isLoading}>loading...</b>}
       <ul className={styles.list}>
         {visibleContacts.map(contact => (
           <ContactItem key={contact.id} contact={contact} />

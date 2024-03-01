@@ -1,14 +1,19 @@
 .filter {
   display: block;
-  width: 320px;
+  max-width: 380px;
   gap: 6px;
   margin-right: 50px;
+  position: sticky;
+  top: 0px;
+  z-index: 2;
 }
 
 .input {
   font-size: 30px;
   padding: 7px 16px;
-  background: none;
-  width: 331px;
+  width: 384px;
   margin-top: 8px;
+  background: #fff;
+  margin-left: 6px;
+  box-shadow: 0 12px 10px rgba(0, 0, 0, 0.5);
 }

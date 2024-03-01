@@ -41,8 +41,8 @@ const ContactForm = () => {
   return (
     <form onSubmit={handelFormSubmit} className={styles.form}>
       <label className={styles.label}>
-        Name
         <input
+          placeholder="Name"
           className={styles.input}
           type="text"
           name="name"
@@ -52,8 +52,8 @@ const ContactForm = () => {
         />
       </label>
       <label className={styles.label}>
-        Phone
         <input
+          placeholder="Phone"
           className={styles.input}
           type="tel"
           name="phone"
