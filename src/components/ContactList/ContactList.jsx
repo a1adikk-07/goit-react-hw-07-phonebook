@@ -22,14 +22,14 @@ const ContactList = () => {
   const visibleContacts = useSelector(selectVisibleContacts);
 
   return (
-    <ul className={styles.list}>
+    <>
       {isLoading && !error && <b>loading...</b>}
-      <ul>
+      <ul className={styles.list}>
         {visibleContacts.map(contact => (
           <ContactItem key={contact.id} contact={contact} />
         ))}
       </ul>
-    </ul>
+    </>
   );
 };
 export default ContactList;
