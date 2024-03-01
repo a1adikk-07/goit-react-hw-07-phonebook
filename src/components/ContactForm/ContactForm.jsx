@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import toast from 'react-hot-toast';
+// import toast from 'react-hot-toast';
 import { postContact } from '../../redux/operations';
 import { selectContacts } from '../../redux/selectors';
 import styles from './contact-form.module.css';
@@ -27,7 +27,7 @@ const ContactForm = () => {
       contact => contact.name.toLowerCase() === name.toLowerCase()
     );
     if (isDublicated) {
-      toast.error(`${name} is already in contacts.`);
+      alert(`${name} is already in contacts.`);
       return;
     }
     dispatch(postContact({ name, phone }));

@@ -16,6 +16,7 @@
   background: none;
   width: 331px;
   margin-top: 8px;
+  box-shadow: 0 12px 10px rgba(0, 0, 0, 0.5);
 }
 
 ::placeholder {
@@ -34,9 +35,20 @@
   font-size: 26px;
   padding: 8px 20px;
   width: 367px;
+  box-shadow: 0 12px 10px rgba(0, 0, 0, 0.5);
 }
 
 .btn:hover {
   color: aliceblue;
   background-color: #899de8;
+}
+
+.btn:focus {
+  width: 360px;
+  margin-top: 7px;
+  font-size: 24px;
+  padding: 6px 16px;
+  background-color: #8fa0df;
+  box-shadow: 0 8px 6px rgba(0, 0, 0, 0.8);
+  margin-left: 11px;
 }
